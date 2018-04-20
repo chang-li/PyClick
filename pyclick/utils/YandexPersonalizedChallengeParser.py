@@ -53,11 +53,13 @@ class YandexPersonalizedChallengeParser:
                 pass
 
             elif len(entry_array) >= 7 and (entry_array[2] == 'Q' or entry_array[2] == 'T'):
-                query = entry_array[4]
-                if query not in top100:
-                    continue
                 task = entry_array[0]
                 serp = entry_array[3]
+                query = entry_array[4]
+                if query not in top100:
+                    task = -1
+                    serp = -1
+                    continue
                 urls_domains = entry_array[6:]
                 session = TaskCentricSearchSession(task, query)
 
