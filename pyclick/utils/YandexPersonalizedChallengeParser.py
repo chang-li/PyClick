@@ -38,10 +38,6 @@ class YandexPersonalizedChallengeParser:
         """
         sessions_file = open(sessions_filename, "r")
         sessions = []
-
-        with open('top109.txt', 'r') as f:
-            top100_tmp = f.read()
-        top100 = top100_tmp.strip().split('\n')
         
         for line in sessions_file:
             if sessions_max and len(sessions) >= sessions_max:
@@ -56,10 +52,6 @@ class YandexPersonalizedChallengeParser:
                 task = entry_array[0]
                 serp = entry_array[3]
                 query = entry_array[4]
-                if query not in top100:
-                    task = -1
-                    serp = -1
-                    continue
                 urls_domains = entry_array[6:]
                 session = TaskCentricSearchSession(task, query)
 
