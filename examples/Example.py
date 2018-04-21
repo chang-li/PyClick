@@ -22,6 +22,7 @@ from pyclick.utils.Utils import Utils
 from pyclick.utils.YandexRelPredChallengeParser import YandexRelPredChallengeParser
 from pyclick.utils.YandexPersonalizedChallengeParser import YandexPersonalizedChallengeParser
 
+import pickle
 
 __author__ = 'Ilya Markov'
 
@@ -45,7 +46,7 @@ if __name__ == "__main__":
 
     search_sessions = YandexPersonalizedChallengeParser().parse(search_sessions_path, search_sessions_num)
 
-    train_test_split = int(len(search_sessions) * 0.75)
+    train_test_split = int(len(search_sessions) * 0.95)
     train_sessions = search_sessions[:train_test_split]
     train_queries = Utils.get_unique_queries(train_sessions)
 
