@@ -22,7 +22,7 @@ from pyclick.utils.Utils import Utils
 from pyclick.utils.YandexRelPredChallengeParser import YandexRelPredChallengeParser
 from pyclick.utils.YandexPersonalizedChallengeParser import YandexPersonalizedChallengeParser
 
-import pickle
+import pickle as pk
 
 __author__ = 'Ilya Markov'
 
@@ -62,8 +62,9 @@ if __name__ == "__main__":
     end = time.time()
     print "\tTrained %s click model in %i secs:\n%r" % (click_model.__class__.__name__, end - start, click_model)
 
-    f = open(sys.argv[1] + '-results.txt', 'wb')
-    f.write(str(click_model))
+    f = open(sys.argv[1] + '-results', 'wb')
+    json_dict = click_model.to_json()
+    f.write(json_dict)
     f.close()
     # print "-------------------------------"
     # print "Testing on %d search sessions (%d unique queries)." % (len(test_sessions), len(test_queries))
